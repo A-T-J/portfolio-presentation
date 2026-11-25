@@ -6,12 +6,12 @@ export const website: ToolGroup = {
   featured: true,
   name: { en: "Website creation", fr: "Création de site" },
   tagline: {
-    en: "The fastest way from “I have a CV” to “I have a site”.",
-    fr: "Le moyen le plus rapide de passer de « j'ai un CV » à « j'ai un site ».",
+    en: "The fastest way from “I have a CV” to “I have a portfolio site”.",
+    fr: "Le moyen le plus rapide de passer de « j'ai un CV » à « j'ai un site portfolio ».",
   },
   why: {
-    en: "An AI or visual builder turns a prompt or a template into a working page in minutes. Use it for the first draft, then rewrite the copy, add real case studies and check every link. Export the code on day one: a site you cannot move is not really yours.",
-    fr: "Un générateur IA ou visuel transforme une consigne ou un modèle en page fonctionnelle en quelques minutes. Servez-vous-en pour la première version, puis réécrivez les textes, ajoutez de vraies études de cas et vérifiez chaque lien. Exportez le code dès le premier jour : un site que vous ne pouvez pas déplacer ne vous appartient pas vraiment.",
+    en: "An AI or visual builder turns a prompt or a template into a working page in minutes. Use it for the first draft, then rewrite the copy, add real case studies and check every link. Export the code on day one: a portfolio site you cannot move is not really yours.",
+    fr: "Un générateur IA ou visuel transforme une consigne ou un modèle en page fonctionnelle en quelques minutes. Servez-vous-en pour la première version, puis réécrivez les textes, ajoutez de vraies études de cas et vérifiez chaque lien. Exportez le code dès le premier jour : un site portfolio que vous ne pouvez pas déplacer ne vous appartient pas vraiment.",
   },
   facts: [
     {
@@ -23,8 +23,8 @@ export const website: ToolGroup = {
       fr: "Générez la structure, puis rédigez les études de cas vous-même. C'est la partie que le recruteur lit vraiment.",
     },
     {
-      en: "Export the code before you customize anything. A drag-and-drop site that cannot leave the tool is a rental.",
-      fr: "Exportez le code avant de personnaliser quoi que ce soit. Un site par glisser-déposer qui ne peut pas quitter l'outil, c'est une location.",
+      en: "Export the code before you customize anything. A drag-and-drop portfolio site that cannot leave the tool is a rental.",
+      fr: "Exportez le code avant de personnaliser quoi que ce soit. Un site portfolio par glisser-déposer qui ne peut pas quitter l'outil, c'est une location.",
     },
     {
       en: "Open the result on a phone and tap every button. Generated and templated pages often ship dead links and a menu that will not close.",
@@ -62,8 +62,8 @@ export const website: ToolGroup = {
         fr: "Générateur IA qui transforme une consigne en application ou site web complet.",
       },
       why: {
-        en: "The fastest way to see your CV as a site, before you own the details.",
-        fr: "Le moyen le plus rapide de voir votre CV en site, avant d'en maîtriser les détails.",
+        en: "The fastest way to see your CV as a portfolio site, before you own the details.",
+        fr: "Le moyen le plus rapide de voir votre CV en site portfolio, avant d'en maîtriser les détails.",
       },
     },
     {

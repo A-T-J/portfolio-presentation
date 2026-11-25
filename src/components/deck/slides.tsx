@@ -184,15 +184,19 @@ function MethodSlide({ lang }: SlideProps) {
 function NeedsSlide({ lang }: SlideProps) {
   return (
     <SlideFrame kicker={needs.kicker[lang]} title={needs.title[lang]}>
-      <div className="grid gap-3 md:grid-cols-3">
-        {needs.roles.map((role) => (
-          <div key={role.role.en} className="card flex flex-col p-5">
-            <p className="font-serif text-2xl font-semibold text-ink">{role.role[lang]}</p>
-            <p className="mt-2 text-sm leading-relaxed text-muted">{role.focus[lang]}</p>
-            <p className="mt-4 border-t border-line pt-3 text-[15px] leading-relaxed text-ink">{role.formats[lang]}</p>
-          </div>
+      <p className="-mt-4 mb-6 max-w-3xl text-base text-muted md:-mt-6">{needs.body[lang]}</p>
+      <ol className="grid gap-3 md:grid-cols-5">
+        {needs.layers.map((layer, index) => (
+          <li key={layer.title.en} className="card flex flex-col p-4">
+            <span className="font-mono text-xs text-muted">0{index + 1}</span>
+            <p className="mt-2 text-lg font-semibold leading-tight text-ink">{layer.title[lang]}</p>
+            <p className="mt-2 text-sm leading-relaxed text-muted">{layer.body[lang]}</p>
+          </li>
         ))}
-      </div>
+      </ol>
+      <p className="mt-4 rounded-[14px] bg-ink px-5 py-4 text-base font-medium leading-snug text-paper md:text-lg">
+        {needs.rule[lang]}
+      </p>
     </SlideFrame>
   );
 }
@@ -301,7 +305,7 @@ export const slideComponents: Record<SlideId, (props: SlideProps) => ReactNode> 
   problem: ProblemSlide,
   "cv-problem": CvProblemSlide,
   method: MethodSlide,
-  needs: NeedsSlide,
+  format: NeedsSlide,
   tools: ToolsSlide,
   seo: SeoSlide,
   checklist: ChecklistSlide,

@@ -34,7 +34,7 @@ export const slideOrder = [
   "problem",
   "cv-problem",
   "method",
-  "needs",
+  "format",
   "tools",
   "seo",
   "checklist",
@@ -47,7 +47,7 @@ export const slideTitles: Record<SlideId, Text> = {
   problem: { en: "The problem", fr: "Le problème" },
   "cv-problem": { en: "The CV", fr: "Le CV" },
   method: { en: "The method", fr: "La méthode" },
-  needs: { en: "Which format", fr: "Quel format" },
+  format: { en: "One format", fr: "Un format" },
   tools: { en: "Tools", fr: "Outils" },
   seo: { en: "SEO & review", fr: "SEO et relecture" },
   checklist: { en: "Checklist", fr: "Check-list" },
@@ -227,10 +227,10 @@ export const method = {
   title: { en: "Five steps from a CV to a live portfolio", fr: "Cinq étapes du CV au portfolio vivant" },
   steps: [
     {
-      title: { en: "CV → file", fr: "CV → fichier" },
+      title: { en: "CV → truth file", fr: "CV → fichier source" },
       body: {
-        en: "Save it as cv.md or cv.json. One file in Git becomes the source of truth for the site.",
-        fr: "Enregistrez-le en cv.md ou cv.json. Un seul fichier dans Git devient la source de vérité du site.",
+        en: "Save it as cv.md or cv.json. That file is the single source of truth; the portfolio site is generated from it.",
+        fr: "Enregistrez-le en cv.md ou cv.json. Ce fichier est la source de vérité ; le site portfolio en est généré.",
       },
     },
     {
@@ -257,8 +257,8 @@ export const method = {
     {
       title: { en: "Publish on push", fr: "Publier à chaque push" },
       body: {
-        en: "Commit the file, deploy the site, date the page. A new project is one commit.",
-        fr: "Committez le fichier, déployez le site, datez la page. Un nouveau projet, c'est un commit.",
+        en: "Commit the file, deploy the portfolio site, date the page. A new project is one commit.",
+        fr: "Committez le fichier, déployez le site portfolio, datez la page. Un nouveau projet, c'est un commit.",
       },
     },
   ],
@@ -280,51 +280,61 @@ export const method = {
 };
 
 export const needs = {
-  kicker: { en: "Which format", fr: "Quel format" },
-  title: { en: "Which format for which role", fr: "Quel format pour quel métier" },
-  roles: [
+  kicker: { en: "One format", fr: "Un seul format" },
+  title: { en: "One portfolio, every role", fr: "Un portfolio, tous les métiers" },
+  body: {
+    en: "The role changes the examples, not the format. Every portfolio uses the same five layers: the CV opens the door, the site is the hub, the case studies prove the work, the links make it checkable, the update log keeps it alive.",
+    fr: "Le métier change les exemples, pas le format. Chaque portfolio utilise les mêmes cinq couches : le CV ouvre la porte, le site est le hub, les études de cas prouvent le travail, les liens le rendent vérifiable, le journal le garde vivant.",
+  },
+  layers: [
     {
-      role: { en: "Marketing", fr: "Marketing" },
-      focus: {
-        en: "You are judged on reach, campaigns and visual results.",
-        fr: "Vous êtes jugé sur la portée, les campagnes et les résultats visuels.",
-      },
-      formats: {
-        en: "CV + Behance (6–10 pieces with briefs) + one campaign case study with metrics.",
-        fr: "CV + Behance (6 à 10 pièces avec brief) + une étude de cas de campagne avec chiffres.",
+      title: { en: "Truth file", fr: "Fichier source" },
+      body: {
+        en: "The key. The CV as cv.md or cv.json: one page, latest role first, the portfolio link at the top.",
+        fr: "La clé. Le CV en cv.md ou cv.json : une page, dernier poste en premier, le lien du portfolio en haut.",
       },
     },
     {
-      role: { en: "Economics", fr: "Économie" },
-      focus: {
-        en: "You are judged on analysis, data and long-term reasoning.",
-        fr: "Vous êtes jugé sur l'analyse, les données et le raisonnement de fond.",
-      },
-      formats: {
-        en: "CV + blog (one post per study) + case studies built on data and charts.",
-        fr: "CV + blog (un article par étude) + études de cas construites sur données et graphiques.",
+      title: { en: "Portfolio site", fr: "Site portfolio" },
+      body: {
+        en: "The hub. One domain you own, with the work and the contact in one link.",
+        fr: "Le hub. Un domaine qui vous appartient, avec le travail et le contact en un lien.",
       },
     },
     {
-      role: { en: "Management", fr: "Management" },
-      focus: {
-        en: "You are judged on decisions, team results and delivery.",
-        fr: "Vous êtes jugé sur les décisions, les résultats d'équipe et la livraison.",
+      title: { en: "Case studies", fr: "Études de cas" },
+      body: {
+        en: "The depth. Three projects: context, constraints, decisions, result.",
+        fr: "La profondeur. Trois projets : contexte, contraintes, décisions, résultat.",
       },
-      formats: {
-        en: "CV + personal site + project case studies: brief, decisions, outcome.",
-        fr: "CV + site personnel + études de cas projet : brief, décisions, résultats.",
+    },
+    {
+      title: { en: "Proof links", fr: "Liens de preuve" },
+      body: {
+        en: "The evidence. A demo, a repository, a file or a report: something clickable.",
+        fr: "La preuve. Une démo, un dépôt, un fichier ou un rapport : quelque chose de cliquable.",
+      },
+    },
+    {
+      title: { en: "Update log", fr: "Journal" },
+      body: {
+        en: "The living record. Date the page, add each project within a week.",
+        fr: "Le dossier vivant. Datez la page, ajoutez chaque projet dans la semaine.",
       },
     },
   ],
+  rule: {
+    en: "The role changes what you show. The format does not change: a CV opens the door, a portfolio proves the work.",
+    fr: "Le métier change ce que vous montrez. Le format ne change pas : un CV ouvre la porte, un portfolio prouve le travail.",
+  },
 };
 
 export const toolsSlide = {
   kicker: { en: "Tools", fr: "Outils" },
   title: { en: "Five groups of tools, five jobs", fr: "Cinq groupes d'outils, cinq fonctions" },
   body: {
-    en: "A portfolio needs five jobs done: find references, create the site, buy the domain, host the site, automate the updates. Open a group to see the tools, why they matter and when to refresh them.",
-    fr: "Un portfolio demande cinq choses : trouver des références, créer le site, acheter le domaine, héberger le site, automatiser les mises à jour. Ouvrez un groupe pour voir les outils, leur utilité et quand les mettre à jour.",
+    en: "A portfolio needs five jobs done: find references, create the portfolio site, buy the domain, host the portfolio site, automate the updates. Open a group to see the tools, why they matter and when to refresh them.",
+    fr: "Un portfolio demande cinq choses : trouver des références, créer le site portfolio, acheter le domaine, héberger le site portfolio, automatiser les mises à jour. Ouvrez un groupe pour voir les outils, leur utilité et quand les mettre à jour.",
   },
   order: {
     en: "Follow the order: get inspired, create, name, host, automate.",
