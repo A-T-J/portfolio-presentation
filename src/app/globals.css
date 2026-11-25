@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f6f2e8;
+  --color-paper-2: #efe8da;
+  --color-ink: #171a17;
+  --color-muted: #5a5d55;
+  --color-line: #d9d2c2;
+  --color-card: #fbf8f1;
+  --color-accent: #1f5b45;
+  --color-accent-soft: #dfe9e2;
+
+  --font-sans: "Segoe UI", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --font-mono: "SFMono-Regular", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .wrap {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .card {
+    background: var(--color-card);
+    border: 1px solid var(--color-line);
+    border-radius: 14px;
+  }
+
+  .region-card {
+    transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+  }
+
+  .region-card:hover {
+    border-color: color-mix(in srgb, var(--color-ink) 35%, transparent);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px -28px rgba(23, 26, 23, 0.45);
+  }
+
+  /* Category marker and small labels: text always present, dot is optional. */
+  .tag {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: 0.45rem;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    background: var(--color-paper);
+    padding: 0.25rem 0.65rem;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-muted);
+    transition: color 160ms ease, border-color 160ms ease;
+  }
+
+  .filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    background: var(--color-card);
+    padding: 0.4rem 0.8rem;
+    font-size: 13px;
+    color: var(--color-muted);
+    transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease;
+  }
+
+  .filter-chip:hover {
+    color: var(--color-ink);
+    border-color: color-mix(in srgb, var(--color-ink) 35%, transparent);
+  }
+
+  .filter-chip[aria-pressed="true"] {
+    border-color: var(--color-ink);
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 0.75rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1;
+    transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+  }
+
+  .btn-solid {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .btn-solid:hover {
+    background: var(--color-accent);
+  }
+
+  .btn-outline {
+    border-color: var(--color-line);
+    background: transparent;
+    color: var(--color-ink);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--color-ink);
+    background: var(--color-card);
+  }
+
+  .icon-btn {
+    display: inline-flex;
+    height: 2.25rem;
+    width: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    background: var(--color-card);
+    color: var(--color-ink);
+    transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease, opacity 160ms ease;
+  }
+
+  .icon-btn:hover:not(:disabled) {
+    border-color: var(--color-ink);
+  }
+
+  .icon-btn-solid {
+    border-color: var(--color-ink);
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .icon-btn-solid:hover:not(:disabled) {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .icon-btn:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  .slide-in {
+    animation: slide-in 260ms ease-out both;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* In full screen the deck is the presentation: give it more room. */
+:root:fullscreen .wrap {
+  max-width: 1440px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
