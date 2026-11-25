@@ -34,7 +34,6 @@ export const slideOrder = [
   "problem",
   "cv-problem",
   "method",
-  "format",
   "tools",
   "seo",
   "checklist",
@@ -47,7 +46,6 @@ export const slideTitles: Record<SlideId, Text> = {
   problem: { en: "The problem", fr: "Le problème" },
   "cv-problem": { en: "The CV", fr: "Le CV" },
   method: { en: "The method", fr: "La méthode" },
-  format: { en: "One format", fr: "Un format" },
   tools: { en: "Tools", fr: "Outils" },
   seo: { en: "SEO & review", fr: "SEO et relecture" },
   checklist: { en: "Checklist", fr: "Check-list" },
@@ -279,56 +277,6 @@ export const method = {
 }`,
 };
 
-export const needs = {
-  kicker: { en: "One format", fr: "Un seul format" },
-  title: { en: "One portfolio, every role", fr: "Un portfolio, tous les métiers" },
-  body: {
-    en: "The role changes the examples, not the format. Every portfolio uses the same five layers: the CV opens the door, the site is the hub, the case studies prove the work, the links make it checkable, the update log keeps it alive.",
-    fr: "Le métier change les exemples, pas le format. Chaque portfolio utilise les mêmes cinq couches : le CV ouvre la porte, le site est le hub, les études de cas prouvent le travail, les liens le rendent vérifiable, le journal le garde vivant.",
-  },
-  layers: [
-    {
-      title: { en: "Truth file", fr: "Fichier source" },
-      body: {
-        en: "The key. The CV as cv.md or cv.json: one page, latest role first, the portfolio link at the top.",
-        fr: "La clé. Le CV en cv.md ou cv.json : une page, dernier poste en premier, le lien du portfolio en haut.",
-      },
-    },
-    {
-      title: { en: "Portfolio site", fr: "Site portfolio" },
-      body: {
-        en: "The hub. One domain you own, with the work and the contact in one link.",
-        fr: "Le hub. Un domaine qui vous appartient, avec le travail et le contact en un lien.",
-      },
-    },
-    {
-      title: { en: "Case studies", fr: "Études de cas" },
-      body: {
-        en: "The depth. Three projects: context, constraints, decisions, result.",
-        fr: "La profondeur. Trois projets : contexte, contraintes, décisions, résultat.",
-      },
-    },
-    {
-      title: { en: "Proof links", fr: "Liens de preuve" },
-      body: {
-        en: "The evidence. A demo, a repository, a file or a report: something clickable.",
-        fr: "La preuve. Une démo, un dépôt, un fichier ou un rapport : quelque chose de cliquable.",
-      },
-    },
-    {
-      title: { en: "Update log", fr: "Journal" },
-      body: {
-        en: "The living record. Date the page, add each project within a week.",
-        fr: "Le dossier vivant. Datez la page, ajoutez chaque projet dans la semaine.",
-      },
-    },
-  ],
-  rule: {
-    en: "The role changes what you show. The format does not change: a CV opens the door, a portfolio proves the work.",
-    fr: "Le métier change ce que vous montrez. Le format ne change pas : un CV ouvre la porte, un portfolio prouve le travail.",
-  },
-};
-
 export const toolsSlide = {
   kicker: { en: "Tools", fr: "Outils" },
   title: { en: "Five groups of tools, five jobs", fr: "Cinq groupes d'outils, cinq fonctions" },
@@ -399,10 +347,6 @@ export const seo = {
       },
     },
   ],
-  rhythm: {
-    en: "Rhythm: one review a month, one Search Console pass a quarter. Cost: two links sent and one hour of fixes.",
-    fr: "Rythme : une relecture par mois, un passage dans Search Console par trimestre. Coût : deux liens envoyés et une heure de corrections.",
-  },
   rule: {
     en: "The 30-second test: a stranger opens the link. If they cannot name your role, your best project and the result, the page is not ready.",
     fr: "Le test des 30 secondes : un inconnu ouvre le lien. S'il ne peut pas nommer votre rôle, votre meilleur projet et le résultat, la page n'est pas prête.",
