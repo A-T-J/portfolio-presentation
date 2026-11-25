@@ -1,12 +1,12 @@
 import type { ToolGroup, ToolGroupId } from "../types";
 import { automation } from "./automation";
-import { build } from "./build";
 import { domain } from "./domain";
 import { hosting } from "./hosting";
 import { inspiration } from "./inspiration";
+import { website } from "./website";
 
-/** Display order: page creation and hosting first. */
-export const toolGroups: ToolGroup[] = [build, domain, hosting, inspiration, automation];
+/** Display order: inspiration first, then website, name, host, automate. */
+export const toolGroups: ToolGroup[] = [inspiration, website, domain, hosting, automation];
 
 export function findToolGroup(id: string): ToolGroup | undefined {
   return toolGroups.find((group) => group.id === (id as ToolGroupId));

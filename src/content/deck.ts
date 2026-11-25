@@ -7,19 +7,17 @@ export const ui = {
   next: { en: "Next", fr: "Suivant" },
   fullscreen: { en: "Full screen", fr: "Plein écran" },
   exitFullscreen: { en: "Exit full screen", fr: "Quitter le plein écran" },
-  backToRegions: { en: "All channels", fr: "Tous les canaux" },
+  backToTools: { en: "All tools", fr: "Tous les outils" },
   continue: { en: "Continue the presentation", fr: "Continuer la présentation" },
   continueShort: { en: "Continue", fr: "Continuer" },
   open: { en: "Open", fr: "Ouvrir" },
   tools: { en: "tools", fr: "outils" },
-  all: { en: "All", fr: "Tous" },
   why: { en: "Why", fr: "Pourquoi" },
   knowThis: { en: "Know this", fr: "À savoir" },
   whenNumbers: { en: "When to update", fr: "Quand mettre à jour" },
-  toolsTitle: { en: "Tools", fr: "Outils" },
-  filterBy: { en: "Filter by category", fr: "Filtrer par catégorie" },
-  keyHint: { en: "← → to move · F for full screen", fr: "← → pour avancer · F pour plein écran" },
-  regionKeyHint: { en: "Esc or ← for all channels · → to continue", fr: "Échap ou ← : canaux · → : continuer" },
+  toolsTitle: { en: "Tools in this group", fr: "Outils de ce groupe" },
+  keyHint: { en: "Move · F for full screen", fr: "Avancer · F pour plein écran" },
+  toolKeyHint: { en: "Esc or ← for all tools · → to continue", fr: "Échap ou ← : tous les outils · → : continuer" },
   slides: { en: "Slides", fr: "Diapositives" },
   goTo: { en: "Go to", fr: "Aller à" },
   language: { en: "Language", fr: "Langue" },
@@ -30,22 +28,15 @@ export const ui = {
 } satisfies Record<string, Text>;
 
 /** Shown next to the logo (and on the title slide on small screens). */
-export const credits = {
-  professorLabel: { en: "Professor", fr: "Professeure" },
-  professor: "Dr. Ouahraoui Fatima",
-  devLabel: { en: "Developer", fr: "Développeur" },
-  dev: "Jafy Taha",
-};
-
-/** Slide order. The id is also the URL hash (#problem, #regions/website…). */
+/** Slide order. The id is also the URL hash (#problem, #tools/build…). */
 export const slideOrder = [
   "intro",
   "problem",
   "cv-problem",
   "method",
   "needs",
-  "regions",
-  "automation",
+  "tools",
+  "seo",
   "checklist",
 ] as const;
 
@@ -57,23 +48,27 @@ export const slideTitles: Record<SlideId, Text> = {
   "cv-problem": { en: "The CV", fr: "Le CV" },
   method: { en: "The method", fr: "La méthode" },
   needs: { en: "Which format", fr: "Quel format" },
-  regions: { en: "Channels", fr: "Canaux" },
-  automation: { en: "Automation", fr: "Automatisation" },
+  tools: { en: "Tools", fr: "Outils" },
+  seo: { en: "SEO & review", fr: "SEO et relecture" },
   checklist: { en: "Checklist", fr: "Check-list" },
 };
 
 export const intro = {
-  kicker: { en: "Class presentation · November 2026", fr: "Présentation de cours · novembre 2026" },
+  kicker: { en: "Portfolio presentation · November 2026", fr: "Présentation portfolio · novembre 2026" },
   title: {
     en: "A CV is a static liability. A portfolio is a living proof of work.",
     fr: "Un CV est un passif statique. Un portfolio est une preuve vivante de votre travail.",
   },
   body: {
-    en: "A CV tells. A portfolio shows. This deck explains why a CV stops the moment you send it, and how a portfolio keeps working: detailed proof, visible process and a file that updates with you.",
-    fr: "Un CV raconte. Un portfolio montre. Cette présentation explique pourquoi un CV s'arrête au moment de l'envoi, et comment un portfolio continue de travailler : preuve détaillée, processus visible et dossier qui évolue avec vous.",
+    en: "Methods and tools presentation",
+    fr: "Présentation des méthodes et outils",
+  },
+  byline: {
+    en: "Created by: Taha Jafy",
+    fr: "Créé par : Taha Jafy",
   },
   start: { en: "Start", fr: "Commencer" },
-  jump: { en: "Go straight to the channels", fr: "Aller directement aux canaux" },
+  jump: { en: "Go straight to the tools", fr: "Aller directement aux outils" },
 };
 
 type Source = { label: string; url: string };
@@ -104,8 +99,8 @@ export const problem = {
       title: { en: "Filtered by software", fr: "Filtré par un logiciel" },
       stat: { en: "75%", fr: "75%" },
       body: {
-        en: "of CVs are rejected by applicant tracking systems before a human reads them. Keywords decide, not your work.",
-        fr: "des CV sont rejetés par les logiciels de suivi des candidatures avant qu'un humain ne les lise. Les mots-clés décident, pas votre travail.",
+        en: "of CVs are rejected by Applicant Tracking Systems (ATS) before a human reads them. Keywords decide, not your work.",
+        fr: "des CV sont rejetés par les systèmes de suivi des candidatures (ATS) avant qu'un humain ne les lise. Les mots-clés décident, pas votre travail.",
       },
       source: { label: "Jobscan", url: "https://www.jobscan.co/blog/75-resumes-rejected-by-ats/" },
     },
@@ -232,169 +227,175 @@ export const method = {
   title: { en: "Five steps from a CV to a live portfolio", fr: "Cinq étapes du CV au portfolio vivant" },
   steps: [
     {
-      title: { en: "Start from the CV", fr: "Partir du CV" },
+      title: { en: "CV → file", fr: "CV → fichier" },
       body: {
-        en: "List roles, dates and skills. That is the skeleton, not the site.",
-        fr: "Listez les postes, les dates et les compétences. C'est la charpente, pas le site.",
+        en: "Save it as cv.md or cv.json. One file in Git becomes the source of truth for the site.",
+        fr: "Enregistrez-le en cv.md ou cv.json. Un seul fichier dans Git devient la source de vérité du site.",
       },
     },
     {
-      title: { en: "Pick three projects", fr: "Choisir trois projets" },
+      title: { en: "Three projects", fr: "Trois projets" },
       body: {
-        en: "Keep the ones that show judgment: a trade-off, a constraint, a fix. Drop the rest.",
-        fr: "Gardez ceux qui montrent votre jugement : un arbitrage, une contrainte, une correction. Écartez le reste.",
+        en: "In the same file, add three projects: problem, your role, stack, result and demo link.",
+        fr: "Dans le même fichier, ajoutez trois projets : problème, votre rôle, stack, résultat et lien de démo.",
       },
     },
     {
-      title: { en: "Write the case", fr: "Écrire le cas" },
+      title: { en: "One page each", fr: "Une page chacun" },
       body: {
-        en: "Problem, constraints, your decisions, the result. Numbers where you have them.",
-        fr: "Problème, contraintes, vos décisions, le résultat. Des chiffres quand vous en avez.",
+        en: "Generate a case-study page from the Markdown or JSON: context, decisions, outcome, one metric.",
+        fr: "Générez une page d'étude de cas depuis le Markdown ou le JSON : contexte, décisions, résultat, un chiffre.",
       },
     },
     {
-      title: { en: "Show the proof", fr: "Montrer la preuve" },
+      title: { en: "Link the proof", fr: "Relier la preuve" },
       body: {
-        en: "Live demo, repository, screenshots, metrics. A claim without a link is a rumour.",
-        fr: "Démo en ligne, dépôt, captures, chiffres. Une affirmation sans lien est une rumeur.",
+        en: "Every project gets a live URL, a repo and screenshots. A claim without a link is a rumour.",
+        fr: "Chaque projet a une URL en ligne, un dépôt et des captures. Une affirmation sans lien est une rumeur.",
       },
     },
     {
-      title: { en: "Keep it current", fr: "Le garder à jour" },
+      title: { en: "Publish on push", fr: "Publier à chaque push" },
       body: {
-        en: "Add each new project within a week. Date the page and let the CV link to it.",
-        fr: "Ajoutez chaque nouveau projet dans la semaine. Datez la page et faites pointer le CV dessus.",
+        en: "Commit the file, deploy the site, date the page. A new project is one commit.",
+        fr: "Committez le fichier, déployez le site, datez la page. Un nouveau projet, c'est un commit.",
       },
     },
   ],
   rule: {
-    en: "A CV stops the moment you send it. A portfolio keeps working: dated, linked, updated. Send the CV, link the portfolio.",
-    fr: "Un CV s'arrête au moment où vous l'envoyez. Un portfolio continue de travailler : daté, lié, mis à jour. Envoyez le CV, mettez le lien du portfolio.",
+    en: "A CV stops at the file. A portfolio goes from cv.json to a live page on every push.",
+    fr: "Un CV s'arrête au fichier. Un portfolio passe de cv.json à une page en ligne à chaque push.",
   },
+  exampleLabel: { en: "Example: cv.json", fr: "Exemple : cv.json" },
+  example: `{
+  "name": "Your Name",
+  "projects": [
+    {
+      "title": "Checkout redesign",
+      "result": "+18% conversion",
+      "demo": "https://demo.example"
+    }
+  ]
+}`,
 };
 
 export const needs = {
   kicker: { en: "Which format", fr: "Quel format" },
-  title: { en: "Which format for which need", fr: "Quel format pour quel besoin" },
-  headNeed: { en: "They want to check", fr: "On veut vérifier" },
-  headUse: { en: "Format", fr: "Format" },
-  rows: [
+  title: { en: "Which format for which role", fr: "Quel format pour quel métier" },
+  roles: [
     {
-      need: { en: "Whether you fit the role in 30 seconds", fr: "Si vous correspondez au poste en 30 secondes" },
-      use: {
-        en: "CV — one page, latest role first, a link to the portfolio at the top.",
-        fr: "CV — une page, dernier poste en premier, le lien du portfolio en haut.",
+      role: { en: "Marketing", fr: "Marketing" },
+      focus: {
+        en: "You are judged on reach, campaigns and visual results.",
+        fr: "Vous êtes jugé sur la portée, les campagnes et les résultats visuels.",
+      },
+      formats: {
+        en: "CV + Behance (6–10 pieces with briefs) + one campaign case study with metrics.",
+        fr: "CV + Behance (6 à 10 pièces avec brief) + une étude de cas de campagne avec chiffres.",
       },
     },
     {
-      need: { en: "How you reason on a real problem", fr: "Comment vous raisonnez sur un vrai problème" },
-      use: {
-        en: "Case study — context, constraints, decisions, result. One page.",
-        fr: "Étude de cas — contexte, contraintes, décisions, résultat. Une page.",
+      role: { en: "Economics", fr: "Économie" },
+      focus: {
+        en: "You are judged on analysis, data and long-term reasoning.",
+        fr: "Vous êtes jugé sur l'analyse, les données et le raisonnement de fond.",
+      },
+      formats: {
+        en: "CV + blog (one post per study) + case studies built on data and charts.",
+        fr: "CV + blog (un article par étude) + études de cas construites sur données et graphiques.",
       },
     },
     {
-      need: { en: "Whether your code runs", fr: "Si votre code tourne" },
-      use: {
-        en: "GitHub — pinned repositories, a README with screenshots, a live demo link.",
-        fr: "GitHub — dépôts épinglés, un README avec captures, un lien vers la démo.",
+      role: { en: "Management", fr: "Management" },
+      focus: {
+        en: "You are judged on decisions, team results and delivery.",
+        fr: "Vous êtes jugé sur les décisions, les résultats d'équipe et la livraison.",
       },
-    },
-    {
-      need: { en: "What your visual work looks like", fr: "À quoi ressemble votre travail visuel" },
-      use: {
-        en: "Behance — 6 to 10 pieces, each with the brief and the final file.",
-        fr: "Behance — 6 à 10 pièces, chacune avec le brief et le fichier final.",
-      },
-    },
-    {
-      need: { en: "How you think over months", fr: "Comment vous réfléchissez dans la durée" },
-      use: {
-        en: "Blog — one post per project: what broke, what you changed.",
-        fr: "Blog — un article par projet : ce qui a cassé, ce que vous avez changé.",
-      },
-    },
-    {
-      need: { en: "The full story of one project", fr: "L'histoire complète d'un projet" },
-      use: {
-        en: "Project case study — brief, process, metrics, what you would redo.",
-        fr: "Étude de cas projet — brief, process, chiffres, ce que vous referiez.",
-      },
-    },
-    {
-      need: { en: "One link with everything", fr: "Un seul lien avec tout" },
-      use: {
-        en: "Personal site — CV, projects and contact on a domain you own.",
-        fr: "Site personnel — CV, projets et contact sur un domaine qui vous appartient.",
+      formats: {
+        en: "CV + personal site + project case studies: brief, decisions, outcome.",
+        fr: "CV + site personnel + études de cas projet : brief, décisions, résultats.",
       },
     },
   ],
 };
 
-export const regionsSlide = {
-  kicker: { en: "Channels", fr: "Canaux" },
-  title: { en: "Pick the channels that prove the work", fr: "Choisissez les canaux qui prouvent le travail" },
+export const toolsSlide = {
+  kicker: { en: "Tools", fr: "Outils" },
+  title: { en: "Five groups of tools, five jobs", fr: "Cinq groupes d'outils, cinq fonctions" },
   body: {
-    en: "Each channel has a different job: the site is the hub, the repository proves the code, the network brings the visitors. Open one, then come back or continue.",
-    fr: "Chaque canal a un rôle : le site est le hub, le dépôt prouve le code, le réseau amène les visiteurs. Ouvrez-en un, puis revenez ou continuez.",
+    en: "A portfolio needs five jobs done: find references, create the site, buy the domain, host the site, automate the updates. Open a group to see the tools, why they matter and when to refresh them.",
+    fr: "Un portfolio demande cinq choses : trouver des références, créer le site, acheter le domaine, héberger le site, automatiser les mises à jour. Ouvrez un groupe pour voir les outils, leur utilité et quand les mettre à jour.",
+  },
+  order: {
+    en: "Follow the order: get inspired, create, name, host, automate.",
+    fr: "Suivez l'ordre : s'inspirer, créer, nommer, héberger, automatiser.",
   },
 };
 
-export const automation = {
-  kicker: { en: "Automate", fr: "Automatiser" },
-  title: { en: "Keep the portfolio alive", fr: "Gardez le portfolio vivant" },
+export const seo = {
+  kicker: { en: "SEO & review", fr: "SEO et relecture" },
+  title: { en: "Be found, then be reviewed", fr: "Être trouvé, puis relu" },
   body: {
-    en: "Short version. Three workflows so the site never goes stale.",
-    fr: "Version courte. Trois flux pour que le site ne se fige jamais.",
+    en: "A portfolio nobody finds is a private notebook. SEO makes the work findable, the social profiles make it credible, and a review tells you what is not landing.",
+    fr: "Un portfolio que personne ne trouve est un carnet privé. Le SEO rend le travail trouvable, les profils sociaux le rendent crédible, et une relecture dit ce qui ne passe pas.",
   },
   flows: [
     {
-      title: { en: "Repository watcher", fr: "Veille de dépôt" },
+      title: { en: "Technical SEO", fr: "SEO technique" },
       steps: [
-        { en: "New push to a pinned repository", fr: "Nouveau push sur un dépôt épinglé" },
-        { en: "GitHub webhook to n8n", fr: "Webhook GitHub vers n8n" },
-        { en: "Check README, screenshots, demo link", fr: "Vérifier le README, les captures, le lien de démo" },
-        { en: "Add it to the work list", fr: "L'ajouter à la liste des projets" },
+        { en: "One page per project, real text not images", fr: "Une page par projet, du texte réel, pas des images" },
+        { en: "Title and meta description written for humans", fr: "Titre et méta-description écrits pour des humains" },
+        { en: "Clean URLs, sitemap, HTTPS, Search Console", fr: "URLs propres, sitemap, HTTPS, Search Console" },
       ],
       note: {
-        en: "A finished project shows up on the site without you editing a page.",
-        fr: "Un projet terminé apparaît sur le site sans retoucher une page.",
+        en: "If a page only exists as an image, no search engine can quote it.",
+        fr: "Une page qui n'existe qu'en image ne peut être citée par aucun moteur.",
       },
     },
     {
-      title: { en: "Deploy watcher", fr: "Veille de déploiement" },
+      title: { en: "Social SEO", fr: "SEO social" },
       steps: [
-        { en: "After each deploy of the site", fr: "Après chaque déploiement du site" },
-        { en: "Check status, links, demo pages", fr: "Vérifier le statut, les liens, les pages de démo" },
-        { en: "Broken link or 404", fr: "Lien cassé ou 404" },
-        { en: "Alert on Telegram, update the date", fr: "Alerte sur Telegram, mise à jour de la date" },
+        { en: "Same name, role and photo on every profile", fr: "Même nom, même rôle et même photo sur chaque profil" },
+        { en: "Headline and bio carry the keywords of the work", fr: "Le titre et la bio portent les mots-clés du travail" },
+        { en: "Portfolio link in every bio and pinned post", fr: "Lien du portfolio dans chaque bio et post épinglé" },
       ],
       note: {
-        en: "A recruiter should never find the broken demo first.",
-        fr: "Un recruteur ne doit jamais tomber sur la démo cassée en premier.",
+        en: "LinkedIn, GitHub, Dribbble, Behance, Facebook, Instagram, X/Twitter: one identity, one link.",
+        fr: "LinkedIn, GitHub, Dribbble, Behance, Facebook, Instagram, X/Twitter : une identité, un lien.",
       },
     },
     {
-      title: { en: "Monthly digest", fr: "Résumé mensuel" },
+      title: { en: "Clean the profiles", fr: "Nettoyer les profils" },
       steps: [
-        { en: "Commits, posts and case studies from 30 days", fr: "Commits, articles et études de cas des 30 derniers jours" },
-        { en: "n8n sends them to an AI model", fr: "n8n les envoie à un modèle d'IA" },
-        { en: "3-line draft for /now or LinkedIn", fr: "Brouillon de 3 lignes pour /now ou LinkedIn" },
-        { en: "You edit and publish", fr: "Vous relisez et publiez" },
+        { en: "Remove old posts, dead links and unprofessional photos", fr: "Retirer les anciens posts, liens morts et photos peu professionnelles" },
+        { en: "Update job titles and dates everywhere", fr: "Mettre à jour les intitulés et les dates partout" },
+        { en: "Delete or archive the profiles you no longer use", fr: "Supprimer ou archiver les profils que vous n'utilisez plus" },
       ],
       note: {
-        en: "One 15-minute pass a month keeps the site credible.",
-        fr: "Un passage de 15 minutes par mois suffit à garder le site crédible.",
+        en: "A recruiter checks the profile before the portfolio. Clean it first.",
+        fr: "Un recruteur vérifie le profil avant le portfolio. Nettoyez-le d'abord.",
+      },
+    },
+    {
+      title: { en: "Review loop", fr: "Boucle de relecture" },
+      steps: [
+        { en: "Send the link to a peer, a recruiter, a senior", fr: "Envoyer le lien à un pair, un recruteur, un senior" },
+        { en: "Ask what they understood in 30 seconds", fr: "Demander ce qu'ils ont compris en 30 secondes" },
+        { en: "Fix the top issue, repeat monthly", fr: "Corriger le point principal, répéter chaque mois" },
+      ],
+      note: {
+        en: "A review is not a compliment. It is a list of what failed to land.",
+        fr: "Une relecture n'est pas un compliment. C'est la liste de ce qui n'est pas passé.",
       },
     },
   ],
-  costs: {
-    en: "Cost: n8n self-hosted is free (cloud from about $20 a month). GitHub Actions is free on public repositories. UptimeRobot checks 50 monitors for free. The digest costs one hour a month.",
-    fr: "Coût : n8n auto-hébergé est gratuit (cloud à partir d'environ 20 $ par mois). GitHub Actions est gratuit sur les dépôts publics. UptimeRobot surveille 50 sites gratuitement. Le résumé coûte une heure par mois.",
+  rhythm: {
+    en: "Rhythm: one review a month, one Search Console pass a quarter. Cost: two links sent and one hour of fixes.",
+    fr: "Rythme : une relecture par mois, un passage dans Search Console par trimestre. Coût : deux liens envoyés et une heure de corrections.",
   },
-  aiRule: {
-    en: "Rule for AI: let it draft the changelog and the digest. It never invents a project, a metric or a date.",
-    fr: "Règle pour l'IA : lui faire rédiger le changelog et le résumé. Jamais inventer un projet, un chiffre ou une date.",
+  rule: {
+    en: "The 30-second test: a stranger opens the link. If they cannot name your role, your best project and the result, the page is not ready.",
+    fr: "Le test des 30 secondes : un inconnu ouvre le lien. S'il ne peut pas nommer votre rôle, votre meilleur projet et le résultat, la page n'est pas prête.",
   },
 };
 
@@ -414,7 +415,7 @@ export const checklist = {
     en: "Every project, case study and live demo, in English and French.",
     fr: "Tous les projets, études de cas et démos en ligne, en français et en anglais.",
   },
-  toRegions: { en: "See all channels", fr: "Voir tous les canaux" },
+  toTools: { en: "See all tools", fr: "Voir tous les outils" },
   restart: { en: "Back to the start", fr: "Revenir au début" },
   notes: {
     en: "Built from the case studies and repository history in this portfolio. Facts checked as of 25 November 2026.",

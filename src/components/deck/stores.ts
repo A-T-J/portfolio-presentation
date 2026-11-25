@@ -9,7 +9,7 @@ import type { Lang } from "@/content/types";
  * takes over right after.
  */
 
-// ---- URL hash: "#problem", "#regions/website" -------------------------------
+// ---- URL hash: "#problem", "#tools/build" -----------------------------------
 
 const hashListeners = new Set<() => void>();
 
@@ -43,7 +43,7 @@ export function navigate(hash: string) {
 
 // ---- Language, remembered in localStorage -----------------------------------
 
-const LANG_KEY = "ei-lang";
+const LANG_KEY = "portfolio-lang";
 const langListeners = new Set<() => void>();
 // Fallback when localStorage is blocked: the choice lasts for this page view.
 let sessionLang: Lang | null = null;

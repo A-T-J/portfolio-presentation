@@ -6,46 +6,51 @@ export const hosting: ToolGroup = {
   featured: true,
   name: { en: "Hosting", fr: "Hébergement" },
   tagline: {
-    en: "Serve the site from the repository, for free.",
-    fr: "Servir le site depuis le dépôt, gratuitement.",
+    en: "The difference between a folder on your laptop and a link a recruiter can open.",
+    fr: "La différence entre un dossier sur votre ordinateur et un lien qu'un recruteur peut ouvrir.",
   },
   why: {
-    en: "A portfolio is a static site most of the time. Static hosting is free, fast and needs no server to patch; the deploy runs on every push, so the live site always matches the code.",
-    fr: "Un portfolio est le plus souvent un site statique. L'hébergement statique est gratuit, rapide et sans serveur à maintenir ; le déploiement se lance à chaque push, donc le site en ligne correspond toujours au code.",
+    en: "Free tiers cover a portfolio. Connect a custom domain, enable HTTPS, and let every push to main deploy the site. Preview builds give you a link to send before a change goes public: that is what turns a local folder into something a recruiter can open.",
+    fr: "Les offres gratuites suffisent pour un portfolio. Branchez un domaine personnalisé, activez HTTPS et laissez chaque push sur main déployer le site. Les prévisualisations vous donnent un lien à envoyer avant la mise en ligne : c'est ce qui transforme un dossier local en page qu'un recruteur peut ouvrir.",
   },
   facts: [
     {
-      en: "GitHub Pages serves a repository directly; a custom domain and HTTPS are included.",
-      fr: "GitHub Pages sert directement un dépôt ; domaine personnalisé et HTTPS sont inclus.",
+      en: "The free tier is enough for a portfolio: static files, a custom domain and HTTPS at no cost.",
+      fr: "L'offre gratuite suffit pour un portfolio : fichiers statiques, domaine personnalisé et HTTPS sans frais.",
     },
     {
-      en: "Cloudflare Pages adds a global CDN, a preview URL per branch and Workers for dynamic routes.",
-      fr: "Cloudflare Pages ajoute un CDN mondial, une URL de prévisualisation par branche et Workers pour les routes dynamiques.",
+      en: "HTTPS is not optional. A browser warning loses the visit before the first line.",
+      fr: "HTTPS n'est pas une option. Un avertissement du navigateur fait perdre la visite avant la première ligne.",
     },
     {
-      en: "Cloudflare Workers run small functions at the edge when a static page is not enough.",
-      fr: "Cloudflare Workers exécutent de petites fonctions en périphérie quand une page statique ne suffit pas.",
+      en: "Deploy on push. A merge to main publishes; a failed build leaves the last working version online.",
+      fr: "Déployez à chaque push. Une fusion sur main publie ; un build en échec laisse la dernière version fonctionnelle en ligne.",
     },
     {
-      en: "The free tier is enough for a portfolio. Pay only if traffic or build minutes grow.",
-      fr: "L'offre gratuite suffit pour un portfolio. Payez seulement si le trafic ou les minutes de build augmentent.",
+      en: "Every branch gets a preview URL. Send that link for feedback instead of a screenshot.",
+      fr: "Chaque branche obtient une URL de prévisualisation. Envoyez ce lien pour un retour, plutôt qu'une capture d'écran.",
     },
   ],
   releases: [
     {
-      what: { en: "Deploy", fr: "Déploiement" },
+      what: { en: "Production deploy", fr: "Déploiement en production" },
       when: { en: "On every push to main", fr: "À chaque push sur main" },
-      source: "per push",
+      source: "CI",
     },
     {
-      what: { en: "Custom domain", fr: "Domaine personnalisé" },
-      when: { en: "Once, at setup", fr: "Une fois, à l'installation" },
-      source: "1x",
+      what: { en: "Preview build", fr: "Build de prévisualisation" },
+      when: { en: "On every pull request", fr: "À chaque pull request" },
+      source: "GitHub",
     },
     {
-      what: { en: "Build settings", fr: "Réglages de build" },
-      when: { en: "Only when dependencies change", fr: "Uniquement quand les dépendances changent" },
-      source: "rare",
+      what: { en: "Custom domain and HTTPS", fr: "Domaine personnalisé et HTTPS" },
+      when: { en: "At launch", fr: "Au lancement" },
+      source: "Cloudflare",
+    },
+    {
+      what: { en: "Uptime check", fr: "Contrôle de disponibilité" },
+      when: { en: "After each deploy", fr: "Après chaque déploiement" },
+      source: "UptimeRobot",
     },
   ],
   tools: [
@@ -53,24 +58,36 @@ export const hosting: ToolGroup = {
       name: "GitHub Pages",
       url: "https://pages.github.com",
       what: {
-        en: "Static hosting straight from a repository.",
-        fr: "Hébergement statique directement depuis un dépôt.",
+        en: "Free static hosting straight from a repository.",
+        fr: "Hébergement statique gratuit directement depuis un dépôt.",
       },
       why: {
-        en: "The shortest path from code to a live URL, with no extra account.",
-        fr: "Le chemin le plus court du code à une URL en ligne, sans compte supplémentaire.",
+        en: "No extra account: push to the repo and the page is online.",
+        fr: "Pas de compte supplémentaire : un push dans le dépôt et la page est en ligne.",
       },
     },
     {
       name: "Cloudflare Pages",
       url: "https://pages.cloudflare.com",
       what: {
-        en: "Static hosting with previews and Workers support.",
-        fr: "Hébergement statique avec prévisualisations et support des Workers.",
+        en: "Static and full-stack hosting on Cloudflare's edge, with Workers for dynamic parts.",
+        fr: "Hébergement statique et full-stack sur le réseau de Cloudflare, avec Workers pour les parties dynamiques.",
       },
       why: {
-        en: "Fast CDN and functions when the portfolio needs a small backend.",
-        fr: "CDN rapide et fonctions quand le portfolio a besoin d'un petit backend.",
+        en: "Add a contact form or redirects with a Worker, without running a server.",
+        fr: "Ajoutez un formulaire de contact ou des redirections avec un Worker, sans gérer de serveur.",
+      },
+    },
+    {
+      name: "Cloudflare Workers",
+      url: "https://workers.cloudflare.com",
+      what: {
+        en: "Serverless functions that run on Cloudflare's edge.",
+        fr: "Fonctions serverless exécutées sur le réseau de Cloudflare.",
+      },
+      why: {
+        en: "Handle forms, redirects and small APIs without a server to maintain.",
+        fr: "Gérez formulaires, redirections et petites API sans serveur à maintenir.",
       },
     },
   ],

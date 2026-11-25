@@ -3,23 +3,22 @@
 import { useEffect } from "react";
 import { ArrowLeft, ArrowRight, Expand, Mark, Shrink } from "@/components/icons";
 import { slideOrder, slideTitles, ui, type SlideId } from "@/content/deck";
-import { findRegion } from "@/content/regions";
-import type { Lang, Region } from "@/content/types";
-import { Credits } from "./credits";
-import { RegionView } from "./region-view";
+import { findToolGroup } from "@/content/tools";
+import type { Lang, ToolGroup } from "@/content/types";
 import { slideComponents } from "./slides";
 import { navigate, setLang, toggleFullscreen, useFullscreen, useHash, useLang } from "./stores";
+import { ToolGroupView } from "./tool-group-view";
 
-type View = { kind: "slide"; index: number } | { kind: "region"; region: Region };
+type View = { kind: "slide"; index: number } | { kind: "tool"; group: ToolGroup };
 
-const REGIONS_INDEX = slideOrder.indexOf("regions");
+const TOOLS_INDEX = slideOrder.indexOf("tools");
 const LAST_INDEX = slideOrder.length - 1;
 
 function parseView(hash: string): View {
-  if (hash.startsWith("regions/")) {
-    const region = findRegion(hash.slice("regions/".length));
-    if (region) return { kind: "region", region };
-    return { kind: "slide", index: REGIONS_INDEX };
+  if (hash.startsWith("tools/")) {
+    const group = findToolGroup(hash.slice("tools/".length));
+    if (group) return { kind: "tool", group };
+    return { kind: "slide", index: TOOLS_INDEX };
   }
   const index = slideOrder.indexOf(hash as SlideId);
   return { kind: "slide", index: index === -1 ? 0 : index };
@@ -39,9 +38,9 @@ export function Deck() {
   const lang = useLang();
   const fullscreen = useFullscreen();
   const view = parseView(hash);
-  const index = view.kind === "slide" ? view.index : REGIONS_INDEX;
-  const viewKey = view.kind === "slide" ? slideOrder[view.index] : `region-${view.region.id}`;
-  const label = view.kind === "slide" ? slideTitles[slideOrder[view.index]][lang] : view.region.name[lang];
+  const index = view.kind === "slide" ? view.index : TOOLS_INDEX;
+  const viewKey = view.kind === "slide" ? slideOrder[view.index] : `tool-${view.group.id}`;
+  const label = view.kind === "slide" ? slideTitles[slideOrder[view.index]][lang] : view.group.name[lang];
 
   useEffect(() => {
     document.documentElement.lang = lang;
@@ -66,14 +65,14 @@ export function Deck() {
         return;
       }
 
-      if (view.kind === "region") {
+      if (view.kind === "tool") {
         // Space and PageDown keep scrolling the tool list.
         if (key === "Escape" || key === "ArrowLeft") {
           event.preventDefault();
-          goTo("regions");
+          goTo("tools");
         } else if (key === "ArrowRight") {
           event.preventDefault();
-          goToIndex(REGIONS_INDEX + 1);
+          goToIndex(TOOLS_INDEX + 1);
         }
         return;
       }
@@ -112,11 +111,10 @@ export function Deck() {
                 </span>
               </span>
             </button>
-            <Credits lang={lang} className="hidden border-l border-line pl-4 text-xs sm:block" />
           </div>
 
           <p className="hidden font-mono text-[11px] uppercase tracking-[0.14em] text-muted lg:block">
-            {view.kind === "slide" ? `${index + 1} / ${slideOrder.length} · ` : `${slideTitles.regions[lang]} · `}
+            {view.kind === "slide" ? `${index + 1} / ${slideOrder.length} · ` : `${slideTitles.tools[lang]} · `}
             <span className="text-ink">{label}</span>
           </p>
 
@@ -142,8 +140,8 @@ export function Deck() {
       </p>
 
       <main id="main" key={viewKey} className="slide-in flex-1 overflow-y-auto [scrollbar-gutter:stable_both-edges]">
-        {view.kind === "region" ? (
-          <RegionView region={view.region} lang={lang} onBack={() => goTo("regions")} />
+        {view.kind === "tool" ? (
+          <ToolGroupView group={view.group} lang={lang} onBack={() => goTo("tools")} />
         ) : Slide ? (
           <Slide lang={lang} onNext={() => goToIndex(view.index + 1)} goTo={goTo} />
         ) : null}
@@ -151,16 +149,16 @@ export function Deck() {
 
       <footer className="shrink-0 border-t border-line bg-paper/95 backdrop-blur">
         <div className="wrap flex h-14 items-center justify-between gap-3">
-          {view.kind === "region" ? (
+          {view.kind === "tool" ? (
             <>
-              <button type="button" onClick={() => goTo("regions")} className="btn btn-outline py-2 text-xs">
+              <button type="button" onClick={() => goTo("tools")} className="btn btn-outline py-2 text-xs">
                 <ArrowLeft />
-                {ui.backToRegions[lang]}
+                {ui.backToTools[lang]}
               </button>
               <span className="hidden font-mono text-[10px] uppercase tracking-[0.14em] text-muted lg:block">
-                {ui.regionKeyHint[lang]}
+                {ui.toolKeyHint[lang]}
               </span>
-              <button type="button" onClick={() => goToIndex(REGIONS_INDEX + 1)} className="btn btn-solid py-2 text-xs">
+              <button type="button" onClick={() => goToIndex(TOOLS_INDEX + 1)} className="btn btn-solid py-2 text-xs">
                 <span className="hidden sm:inline">{ui.continue[lang]}</span>
                 <span className="sm:hidden">{ui.continueShort[lang]}</span>
                 <ArrowRight />

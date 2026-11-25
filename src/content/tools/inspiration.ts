@@ -61,6 +61,42 @@ export const inspiration: ToolGroup = {
       },
     },
     {
+      name: "Dribbble",
+      url: "https://dribbble.com",
+      what: {
+        en: "Shots and visual exploration from designers.",
+        fr: "Créations et explorations visuelles de designers.",
+      },
+      why: {
+        en: "See current visual trends and how a single screen is framed. A shot is not a full case study.",
+        fr: "Voir les tendances visuelles et la composition d'un écran. Une création n'est pas une étude de cas complète.",
+      },
+    },
+    {
+      name: "Mobbin",
+      url: "https://mobbin.com",
+      what: {
+        en: "Curated library of real app and web screens and flows.",
+        fr: "Bibliothèque d'écrans et de parcours réels d'applications et de sites.",
+      },
+      why: {
+        en: "See how real products structure navigation, onboarding and content. Useful for layout patterns.",
+        fr: "Voir comment de vrais produits structurent la navigation, l'accueil et le contenu. Utile pour les schémas de mise en page.",
+      },
+    },
+    {
+      name: "Godly",
+      url: "https://godly.website",
+      what: {
+        en: "Curated gallery of high-craft websites.",
+        fr: "Galerie sélectionnée de sites très soignés.",
+      },
+      why: {
+        en: "See ambitious layouts and motion. Take the structure, not the visual identity.",
+        fr: "Voir des mises en page et des animations ambitieuses. Prenez la structure, pas l'identité visuelle.",
+      },
+    },
+    {
       name: "Lovable templates",
       url: "https://lovable.dev/templates",
       what: {
@@ -73,6 +109,18 @@ export const inspiration: ToolGroup = {
       },
     },
     {
+      name: "v0 templates",
+      url: "https://v0.app/templates",
+      what: {
+        en: "Ready-made React and Tailwind page templates.",
+        fr: "Modèles de pages React et Tailwind prêts à l'emploi.",
+      },
+      why: {
+        en: "Start from a working component layout and keep the code.",
+        fr: "Partir d'une mise en page de composants fonctionnelle et garder le code.",
+      },
+    },
+    {
       name: "Behance",
       url: "https://www.behance.net",
       what: {
@@ -82,6 +130,18 @@ export const inspiration: ToolGroup = {
       why: {
         en: "Read how others frame a brief, a process and a result.",
         fr: "Lire comment d'autres présentent un brief, un processus et un résultat.",
+      },
+    },
+    {
+      name: "Credly",
+      url: "https://www.credly.com",
+      what: {
+        en: "Digital badge and credential wallet for verified certificates.",
+        fr: "Portefeuille de badges numériques et de certificats vérifiés.",
+      },
+      why: {
+        en: "Keep verified badges in one public profile and embed them in the portfolio and LinkedIn.",
+        fr: "Regroupez vos badges vérifiés dans un profil public et intégrez-les au portfolio et à LinkedIn.",
       },
     },
   ],

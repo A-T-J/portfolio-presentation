@@ -73,6 +73,18 @@ export const automation: ToolGroup = {
       },
     },
     {
+      name: "Make",
+      url: "https://www.make.com",
+      what: {
+        en: "Visual no-code automation across apps and APIs.",
+        fr: "Automatisation visuelle sans code entre applications et API.",
+      },
+      why: {
+        en: "A visual alternative to n8n when you want to connect tools without hosting anything.",
+        fr: "Une alternative visuelle à n8n pour relier des outils sans héberger quoi que ce soit.",
+      },
+    },
+    {
       name: "UptimeRobot",
       url: "https://uptimerobot.com",
       what: {

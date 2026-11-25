@@ -6,7 +6,7 @@ import { useMemo, useSyncExternalStore } from "react";
 const noop = () => () => {};
 const MARGIN = 2;
 
-/** The address this page is served from, without the slide hash, so students land on the start. */
+/** The address this page is served from, without the slide hash, so visitors land on the start. */
 function useSiteUrl() {
   return useSyncExternalStore(
     noop,

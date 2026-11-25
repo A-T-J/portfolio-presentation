@@ -18,7 +18,7 @@ export type Release = {
 };
 
 /** The five purposes a portfolio tool can serve. */
-export type ToolGroupId = "build" | "domain" | "hosting" | "inspiration" | "automation";
+export type ToolGroupId = "website" | "domain" | "hosting" | "inspiration" | "automation";
 
 export type ToolGroup = {
   id: ToolGroupId;
